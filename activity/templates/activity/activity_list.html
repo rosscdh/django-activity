@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block css_header %}
+<style>
+dl {
+    display: block;
+    margin-top: 1.2em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+}
+dl dt{
+  color:#556270;
+}
+dl dd{
+    margin-bottom: 1.1em;
+}
+dl dd b{
+  color:#C44D58;
+  text-transform:uppercase;
+}
+dl dd blockquote{
+  font-size:0.9em;
+  background-color:#D7E8D5;
+  color:#4A3A47;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+{% if is_paginated %}
+    <div class="pagination">
+        <span class="page-links">
+            {% if page_obj.has_previous %}
+                <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+            <span class="page-current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+            {% if page_obj.has_next %}
+                <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
+{% endif %}
+
+<dl>
+{% for a in object_list %}
+  <dt title="{{ a.timestamp }}">{{ a.timesince }}</dt>
+  <dd><b>{{ a.verb }}</b>:<blockquote>{{ a.actor }} {{ a.description | safe }}</blockquote></dd>
+{% empty %}
+  <dt><h3>No events found</h3></dt>
+{% endfor %}
+</dl>
+{% endblock %}
