@@ -10,7 +10,6 @@ setup(
     license = "MIT",
     keywords = "django activity stream log",
     url = "https://github.com/rosscdh/django-activiy",
-    packages=['django-jsonfield'],
     install_requires = [
         'django-jsonfield',
     ]
