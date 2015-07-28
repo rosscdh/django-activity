@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models, migrations
 import jsonfield.fields
-import m1_tools.apps.activity.models
+import activity.models
 
 
 class Migration(migrations.Migration):
@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('actor', models.CharField(max_length=255)),
                 ('verb', models.CharField(max_length=255)),
                 ('description', models.TextField(null=True, blank=True)),
-                ('timestamp', models.DateTimeField(default=m1_tools.apps.activity.models._datetime)),
+                ('timestamp', models.DateTimeField(default=activity.models._datetime)),
                 ('data', jsonfield.fields.JSONField(default={})),
             ],
             options={
